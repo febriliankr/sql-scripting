@@ -1,11 +1,9 @@
 package main
 
 import (
-	"log"
-
 	"github.com/febriliankr/go-sql-scripting/adapter"
+	"github.com/febriliankr/go-sql-scripting/app"
 	"github.com/febriliankr/go-sql-scripting/config"
-	"github.com/jmoiron/sqlx"
 )
 
 func main() {
@@ -15,18 +13,12 @@ func main() {
 		panic(err)
 	}
 
-	app := NewApp(db)
+	app := app.NewOpenexam(db)
 
-	log.Println("app", app)
+	err = app.ImportAll()
 
-}
-
-type App struct {
-	Db *sqlx.DB
-}
-
-func NewApp(db *sqlx.DB) *App {
-	return &App{
-		Db: db,
+	if err != nil {
+		panic(err)
 	}
+
 }

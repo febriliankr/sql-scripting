@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/caarlos0/env/v7"
+	_ "github.com/joho/godotenv/autoload"
 )
 
 type Config struct {
@@ -14,7 +15,7 @@ type Config struct {
 func InitConfig() Config {
 	cfg := Config{}
 	if err := env.Parse(&cfg); err != nil {
-		fmt.Printf("%+v\n", err)
+		fmt.Printf("unable to parse config %+v\n", err)
 	}
 	return cfg
 

@@ -1,6 +1,7 @@
 package adapter
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/febriliankr/go-sql-scripting/config"
@@ -9,7 +10,6 @@ import (
 )
 
 func NewDB(cfg config.Config) (*sqlx.DB, error) {
-
 	pg, err := sqlx.Connect(cfg.DatabaseDriver, cfg.DatabaseURL)
 	if err != nil {
 		return nil, err
